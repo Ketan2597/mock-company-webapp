@@ -1,16 +1,15 @@
-name: CI
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build
-        run: ./gradlew assemble
-
-      - name: Test
-        run: ./gradlew test
+pipeline {
+    agent any
+    stages {
+        stage("Build") {
+            steps {
+                sh "./gradlew assemble"
+            }
+        }
+        stage("Test") {
+            steps {
+                sh "./gradlew test"
+            }
+        }
+    }
+}
